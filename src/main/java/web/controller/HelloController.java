@@ -16,7 +16,7 @@ public class HelloController {
 		messages.add("Доброго времени суток!");
 		messages.add("Рады вас приветствовать на нашем сайте с автомобилями!");
 		model.addAttribute("messages", messages);
-		return "index";
+		return "/WEB-INF/web/index.html";
 	}
 	
 }
