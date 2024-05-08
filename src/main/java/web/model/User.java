@@ -1,20 +1,47 @@
 package web.model;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import org.hibernate.annotations.Generated;
+
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
+    @NotBlank(message = "Строка с именем не может быть пустой.")
+    @Pattern(regexp = "^[A-Za-z\\-]+$", message = "Только буквы.")
+    @Column(name = "name")
     private String name;
 
+    @NotBlank(message = "Строка с фамилией не может быть пустой.")
+    @Pattern(regexp = "^[A-Za-z\\-]+$", message = "Только буквы.")
+    @Column(name = "lastname")
     private String lastName;
+    @NotBlank(message = "Строка с возрастом не может быть пустой.")
+    @Column(name = "age")
+    private String age;
 
-    private int age;
-
-    public User(){
-    }
-
-    public User(String name, String lastName, int age) {
+    public User(String name, String lastName, String age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public User() {
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -25,7 +52,7 @@ public class User {
         return lastName;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
@@ -37,7 +64,17 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age='" + age + '\'' +
+                '}';
     }
 }

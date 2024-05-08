@@ -1,15 +1,80 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Users</title>
+    <style>
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #000;
+            color: #fff;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #f00;
+        }
+
+        #add-user-button {
+            margin-top: 10px;
+            display: block;
+            width: 200px;
+            height: 50px;
+            font-size: 16px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 <body>
-<div>
-    <th:block th:each="msg : ${messages}">
-        <h1 th:text="${msg}"></h1>
-    </th:block>
-</div>
+<table border="1" cellpadding="5">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>LastName</th>
+        <th>Age</th>
+    </tr>
+    </thead>
+    <tr th:each="user : ${users}">
+        <td th:utext="${user.getId()}">ID</td>
+        <td th:utext="${user.getName()}">Name</td>
+        <td th:utext="${user.getLastName()}">LastName</td>
+        <td th:utext="${user.getAge()}">Age</td>
+        </td>
+        <td><a th:href="'/updateuser?id='+${user.id}">Update</a>
+        <td><a th:href="'/deleteUser?id='+${user.id}">Delete</a></td>
+    </tr>
+</table>
+
+<form action="adduser" target="_blank">
+    <button id="add-user-button">Add new user</button>
+</form>
 </body>
 </html>

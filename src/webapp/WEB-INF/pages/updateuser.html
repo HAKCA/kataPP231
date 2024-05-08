@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <h1 style="text-align: center; font-size: 1.5em;">Update User</h1>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    form {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+
+    input {
+      display: block;
+      width: 250px;
+      padding: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 10px;
+      width: 150px;
+      height: 40px;
+      font-size: 16px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+<form th:method="POST" th:action="@{/updateuser}" th:object="${user}">
+
+  <input type="hidden" th:field="*{id}"/>
+
+  <label>Enter name: </label>
+  <input type="text" th:field="*{name}" id="firstName"/>
+
+  <label>Enter last name: </label>
+  <input type="text" th:field="*{lastName}" id="lastName"/>
+
+  <label>Enter age: </label>
+  <input type="text" th:field="*{age}" id="age"/>
+
+  <button type="submit">Save</button>
+</form>
+</body>
+</html>
